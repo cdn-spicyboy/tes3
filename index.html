@@ -16,20 +16,20 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* Menggunakan min-height agar konten tidak terpotong jika ada scroll */
+            min-height: 100vh;
         }
 
         /* Box & Player Box Styles */
         .box, .player-box {
             background: #141414;
             padding: 20px;
-            width: 320px; /* Lebar tetap */
-            max-width: 90%; /* Responsif untuk layar lebih kecil */
+            width: 320px;
+            max-width: 90%;
             border-radius: 12px;
             box-shadow: 0 0 10px rgba(0,0,0,0.4);
             text-align: center;
-            display: none; /* Default hidden */
-            box-sizing: border-box; /* Pastikan padding tidak menambah lebar */
+            display: none;
+            box-sizing: border-box;
         }
 
         /* Active state for boxes */
@@ -39,20 +39,20 @@
 
         /* Headings */
         .box-heading {
-            margin-bottom: 10px; /* Menggantikan inline style h2 */
+            margin-bottom: 10px;
         }
 
         /* Button Styles */
         .btn {
             padding: 12px;
-            width: 48%; /* Mendekati 50% untuk dua tombol */
+            width: 48%;
             border: none;
             border-radius: 6px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             color: white;
-            transition: background 0.3s ease; /* Efek hover */
+            transition: background 0.3s ease;
         }
 
         .btn:hover {
@@ -60,17 +60,17 @@
         }
 
         .btn.ok {
-            background: #1dbf00; /* Hijau */
+            background: #1dbf00;
         }
 
         .btn.exit {
-            background: #cc0000; /* Merah */
+            background: #cc0000;
         }
 
         .btn-wrapper {
             display: flex;
             justify-content: space-between;
-            gap: 10px; /* Memberikan sedikit jarak antar tombol */
+            gap: 10px;
             margin-top: 12px;
         }
 
@@ -79,12 +79,23 @@
             width: 100%;
             border-radius: 10px;
             background: black;
-            display: block; /* Menghilangkan margin bawah default dari inline element */
+            display: block;
         }
 
-        /* Adsterra Banner Container */
+        /* Perbaikan Penjajaran Iklan */
         .adsterra-banner-container {
-            margin-bottom: 15px; /* Menggantikan inline style div */
+            margin-bottom: 15px;
+            /* Flexbox untuk penjajaran horizontal di tengah */
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            width: 100%; 
+            overflow: hidden;
+        }
+        
+        /* Opsi Tambahan: Menargetkan elemen Iframe/Div yang disuntikkan */
+        iframe[id^="aswift_"], div[id^="aswift_"], div[id^="google_ads_iframe"] {
+            margin: 0 auto !important; 
         }
 
         /* Footer Text */
@@ -92,7 +103,7 @@
             margin-top: 12px;
             font-size: 13px;
             opacity: 0.7;
-            color: rgba(255, 255, 255, 0.7); /* Lebih eksplisit */
+            color: rgba(255, 255, 255, 0.7);
         }
     </style>
 </head>
@@ -100,6 +111,7 @@
 <body>
 
     <div class="box active" id="step1">
+        
         <div class="adsterra-banner-container">
             <script type="text/javascript">
                 atOptions = {
@@ -135,48 +147,27 @@
     </div>
 
     <script>
-        // URL tujuan untuk iklan
         const AD_URL = "https://www.effectivegatecpm.com/uivfwzs5?key=3daaa79034f36ffd3b588e0669da5623";
 
-        /**
-         * Mengarahkan pengguna ke halaman iklan eksternal saat tombol 'EXIT' diklik.
-         * Ini adalah satu-satunya tindakan yang membuka tab baru.
-         */
         function redirectToAds() {
-            window.open(AD_URL, "_blank"); // Membuka tab baru untuk iklan
-            // Opsional: Anda bisa menutup halaman ini atau mengarahkan ke halaman lain setelah membuka iklan
-            // window.location.href = "about:blank"; // Contoh: mengarahkan ke halaman kosong
+            window.open(AD_URL, "_blank");
         }
 
-        /**
-         * Menampilkan video player setelah konfirmasi usia.
-         * Tidak lagi membuka tab iklan secara paksa.
-         */
         function showVideoPlayer() {
-            // Sembunyikan konfirmasi usia (step1)
             document.getElementById("step1").classList.remove("active");
-            // Tampilkan video player (step2)
             document.getElementById("step2").classList.add("active");
-            
-            // Opsional: Jika Anda tetap ingin membuka iklan saat video diputar,
-            // pertimbangkan untuk menambahkan timer atau interaksi lain
-            // Contoh: setTimeout(() => window.open(AD_URL, "_blank"), 5000); // Buka iklan setelah 5 detik
         }
 
-        // Tambahan: Pastikan video memulai putar otomatis jika elemen player aktif
         document.addEventListener('DOMContentLoaded', () => {
             const videoElement = document.querySelector('#step2 video');
             const playerBox = document.getElementById('step2');
 
-            // Cek jika playerbox aktif saat halaman dimuat (misal jika ada bug atau state disimpan)
             if (playerBox.classList.contains('active') && videoElement) {
                 videoElement.play().catch(error => {
                     console.warn("Autoplay was prevented:", error);
-                    // Beri tahu pengguna untuk mengklik play jika autoplay diblokir
                 });
             }
         });
-
     </script>
 
 </body>

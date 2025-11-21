@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Video Player</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #0e0e0e;
+        color: white;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .box, .player-box {
+        background: #141414;
+        padding: 20px;
+        width: 320px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.4);
+        text-align: center;
+        display: none;
+    }
+
+    .box.active { display: block; }
+    .player-box.active { display: block; }
+
+    .btn {
+        padding: 12px;
+        width: 48%;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        color: white;
+    }
+
+    .ok { background: #1dbf00; }
+    .exit { background: #cc0000; }
+
+    .btn-wrapper {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 12px;
+    }
+
+    video {
+        width: 100%;
+        border-radius: 10px;
+        background: black;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- ============ LP 1 ============ -->
+<div class="box active" id="step1">
+
+    <h2 style="margin-bottom: 10px;">Click to Watch</h2>
+
+    <!-- Banner Adsterra -->
+    <div style="margin-bottom:15px;">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '71fd9d79d951b55faedafe5af87ebbe5',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/71fd9d79d951b55faedafe5af87ebbe5/invoke.js"></script>
+    </div>
+
+    <div class="btn-wrapper">
+        <button class="btn ok" onclick="goStep2()">I AM 18+</button>
+        <button class="btn exit" onclick="goAds()">EXIT</button>
+    </div>
+</div>
+
+<!-- ============ LP 2 (Video Player) ============ -->
+<div class="player-box" id="step2">
+
+    <h2 style="margin-bottom: 10px;">Now Watching</h2>
+
+    <!-- Video -->
+    <video controls autoplay playsinline>
+        <source src="https://cdn.videy.co/t1A57zmc1.mp4" type="video/mp4">
+    </video>
+
+    <!-- Footer -->
+    <p style="margin-top:12px; font-size:13px; opacity:0.7;">
+        © 2025 Streaming Player
+    </p>
+</div>
+
+
+<script>
+    function goAds() {
+        window.location.href = "https://www.effectivegatecpm.com/uivfwzs5?key=3daaa79034f36ffd3b588e0669da5623";
+    }
+
+    function goStep2() {
+        // buka ads dulu
+        window.open("https://www.effectivegatecpm.com/uivfwzs5?key=3daaa79034f36ffd3b588e0669da5623", "_blank");
+
+        // pindah ke LP video
+        document.getElementById("step1").classList.remove("active");
+        document.getElementById("step2").classList.add("active");
+    }
+</script>
+
+</body>
+</html>
